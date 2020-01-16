@@ -3,7 +3,7 @@ const fs = require('fs')
 const dvr17 = './1D42C600_243830.MP4'
 const dvr19 = './27D3DC00.MP4'
 var mainWindow;
-var tmp;
+var gpsData;
 
  videoanalyser.default.analyseVideo(dvr17, async function(err,result){
                 
@@ -13,26 +13,48 @@ var tmp;
             return err
         }
         //console.log(result)
-        tmp = result
+        gpsData = result
         fs.writeFileSync("dvr17.json", JSON.stringify(result), 'utf8');
         return await result 
     }) 
 
+
+function getlocation(data) // only reserve lat and lng
+{
+    //console.log(data)
+    var result=[] 
+    data.gpsData.forEach(element => {
+      //console.log("lat : "+element.lat)  
+      //console.log("lng : "+element.lon)
+      result.push({
+          lat : element.lat,
+          lng : element.lon
+      })
+      
+    });
+
+    console.log(result)
+    return result
+}
+
+    
+
 setTimeout(function () {
-  console.log(tmp)
+    getlocation(gpsData)
+    
     }, 100)
 
+
+
+
+
+
+
+
+
+
+
 /*
- analyseVideo(analyseQueue.pop(), function (err, result) {
-    
-                // Finished so no need to timeout
-                clearTimeout(analyseTimeout);
-
-                processing = false;
-                getMainWindow().webContents.send('analysed-video', result);
-                processQueue();
-            });
-
 module.exports.default =  {
 //export default {
     analyseVideo: analyseVideo,
