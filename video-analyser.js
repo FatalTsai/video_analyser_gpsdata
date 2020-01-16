@@ -59,7 +59,7 @@ var log = true;
 
  */
 
-var analyseVideo = function(filePath, callback) {
+var analyseVideo =  function(filePath, callback) {
 
     fs.open(filePath, 'r', function(err, fd) {
 
@@ -449,7 +449,9 @@ var analyseVideo = function(filePath, callback) {
 
                 //console.dir(metadata)
 
-                callback(null, file);
+                if (callback) {
+                    callback(null, file);
+                }
                 
             });
 
