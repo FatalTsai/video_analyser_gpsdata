@@ -5,7 +5,7 @@ const dvr19 = './27D3DC00.MP4'
 var mainWindow;
 var gpsData;
 
- videoanalyser.default.analyseVideo(dvr17, async function(err,result){
+videoanalyser.default.analyseVideo(dvr19, async function(err,result){
                 
         if(err)
         {
@@ -14,7 +14,7 @@ var gpsData;
         }
         //console.log(result)
         gpsData = result
-        fs.writeFileSync("dvr17.json", JSON.stringify(result), 'utf8');
+        //fs.writeFileSync("dvr17.json", JSON.stringify(result), 'utf8');
         return await result 
     }) 
 
@@ -47,20 +47,8 @@ setTimeout(function () {
 
 
 
-
-
-
-
-
-
-
-/*
 module.exports.default =  {
-//export default {
-    analyseVideo: analyseVideo,
-    fileExists: fileExists,
-    register: register,
-    findAtoms: findAtoms
+
 };
 
- */
+
